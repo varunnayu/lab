@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>pr1</h1> 
+   <p>package Balance; public class Account {
+    double principal,rate,balance;
+    int time;
+    public Account(double pr,int ti,double ra) {
+    principal=pr; time=ti; rate=ra;
+    }
+    public void calcAmount()
+    { balance=principal*rate*time; }
+    public void DisplayBalance() {
+    System.out.println("\n\n Principal Amount:" +principal+ "Rs\n Time:" +time+ "years\n\n current Balance:" +balance+"Rs");
+    }
+    }
+    import Balance.Account;
+    
+    class DemoPackage
+    {
+    public static void main(String args[]) {
+    Account acc=new Account(5000,2,3); acc.calcAmount(); acc.DisplayBalance();
+    } }
+    </p>
+    
+</body>
+</html>
