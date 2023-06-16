@@ -1,0 +1,205 @@
+<p>
+    mer
+    #include<stdio.h><br>
+        void merge(int [],int ,int ,int );<br>
+        void part(int [],int ,int );<br>
+        int main()<br>
+        {<br>
+         int arr[30];<br>
+         int i,size;<br>
+         printf("\n\t------- Merge sorting method -------\n\n");<br>
+         printf("Enter total no. of elements : ");<br>
+         scanf("%d",&size);<br>
+         for(i=0; i<size; i++)<br>
+         {<br>
+           printf("Enter %d element : ",i+1);<br>
+           scanf("%d",&arr[i]);<br>
+         }
+         part(arr,0,size-1);<br>
+         printf("\n\t------- Merge sorted elements -------\n\n");<br>
+         for(i=0; i<size; i++)<br>
+         printf("%d ",arr[i]);<br>
+         return 0;<br>
+        }<br>
+        
+        
+        void part(int arr[],int min,int max)<br>
+        {<br>
+         int mid;<br>
+         if(min<max)<br>
+         {<br>
+           mid=(min+max)/2;<br>
+           part(arr,min,mid);<br>
+           part(arr,mid+1,max);<br>
+           merge(arr,min,mid,max);<br>
+         }<br>
+        }<br>
+        
+        
+        void merge(int arr[],int min,int mid,int max)<br>
+        {<br>
+          int tmp[30];<br>
+          int i,j,k,m; <br>
+          j=min;<br>
+          m=mid+1;<br>
+          for(i=min; j<=mid && m<=max ; i++)<br>
+          {<br>
+             if(arr[j]<=arr[m])<br>
+             {<br>
+                 tmp[i]=arr[j];<br>
+                 j++;<br>
+             }<br>
+             else<br>
+             {<br>
+                 tmp[i]=arr[m];<br>
+                 m++;<br>
+             }<br>
+          }<br>
+          if(j>mid)<br>
+          {<br>
+             for(k=m; k<=max; k++)<br>
+             {<br>
+                 tmp[i]=arr[k];<br>
+                 i++;<br>
+             }<br>
+          }<br>
+          else<br>
+          {<br>
+             for(k=j; k<=mid; k++)<br>
+             {<br>
+                tmp[i]=arr[k];<br>
+                i++;<br>
+             }<br>
+          }<br>
+          for(k=min; k<=max; k++)<br>
+             arr[k]=tmp[k];<br>
+        }<br>
+        
+</p><hr>
+<p>
+    qu
+    #include<stdio.h><br>
+        void qsort(int arr[20], int fst, int last);<br>
+        int main()<br>
+        {<br>
+         int arr[30];<br>
+         int i,size;<br>
+         printf("Enter total no. of the elements : ");<br>
+         scanf("%d",&size);<br>
+         printf("Enter total %d elements : \n",size); <br>
+         for(i=0; i<size; i++)<br>
+            scanf("%d",&arr[i]);<br>
+         qsort(arr,0,size-1);<br>
+         printf("Quick sorted elements are as  : \n"); <br>
+         for(i=0; i<size; i++)<br>
+            printf("%d\t",arr[i]);<br>
+         return 0;<br>
+        }<br>
+        void qsort(int arr[20], int fst, int last)<br>
+        {<br>
+         int i,j,pivot,tmp;<br>
+         if(fst<last)<br>
+         {<br>
+           pivot=fst;<br>
+           i=fst;<br>
+           j=last;<br>
+           while(i<j)<br>
+           {<br>
+             while(arr[i]<=arr[pivot] && i<last)<br>
+                i++;<br>
+             while(arr[j]>arr[pivot]) <br>
+                j--;<br>
+             if(i<j)<br>
+             {<br>
+                tmp=arr[i];<br>
+                arr[i]=arr[j];<br>
+                arr[j]=tmp; <br>
+             }<br>
+           }<br>
+           tmp=arr[pivot];<br>
+           arr[pivot]=arr[j];<br>
+           arr[j]=tmp;<br>
+           qsort(arr,fst,j-1);<br>
+           qsort(arr,j+1,last); <br>
+         }<br>
+        }<br>
+</p><hr>
+<p>
+    topo
+    #include <stdio.h><br>
+        int main()<br>
+       {<br>
+           int i,j,k,n,a[10][10],indeg[10],flag[10],count=0;<br>
+        <br>
+           printf("Enter the no of vertices:\n");<br>
+           scanf("%d",&n);<br>
+        <br>
+           printf("Enter the adjacency matrix:\n");<br>
+           for(i=0;i<n;i++)<br>
+       {<br>
+               printf("Enter row %d\n",i+1);<br>
+               for(j=0;j<n;j++)<br>
+                   scanf("%d",&a[i][j]);<br>
+           }<br>
+        <br>
+           for(i=0;i<n;i++)<br>
+       {<br>
+               indeg[i]=0;<br>
+               flag[i]=0;<br>
+           }<br>
+        <br>
+           for(i=0;i<n;i++)<br>
+               for(j=0;j<n;j++)<br>
+                   indeg[i]=indeg[i]+a[j][i];<br>
+        <br>
+           printf("\nThe topological order is:");<br>
+        
+           while(count<n)<br>
+       {<br>
+               for(k=0;k<n;k++)<br>
+             {<br>
+                   if((indeg[k]==0) && (flag[k]==0)){<br>
+                       printf("%d ",(k+1));<br>
+                       flag [k]=1;<br>
+                   }<br>
+        
+                   for(i=0;i<n;i++)<br>
+             {<br>
+                       if(a[i][k]==1)<br>
+                           indeg[k]--;<br>
+                   }<br>
+               }<br>
+        
+               count++;<br>
+           }<br>
+        
+           return 0;<br>
+       }<br>
+</p><hr>
+<p>
+    #include<stdio.h><br>
+        int main(){<br>
+            int a[100],n,i,j,position,swap;<br>
+            printf("enter no of elements");<br>
+            scanf("%d",&n);<br>
+            printf("enter %d number n",n);<br>
+            for(i=0;i<n;i++)<br>
+            scanf("%d",&aa[i]);<br>
+            for(i=0;i<n;i++){<br>
+                position=i;<br>
+                for(j=0;j<n;j++){<br>
+                    if(a[position]>a[j])<br>
+                    position=j;<br>
+                }<br>
+                if(position !=i){<br>
+                    swap=a[i];<br>
+                    a[i]=a[position];<br>
+                    a[position]=swap;<br>
+                }<br>
+            }<br>
+            print("sorted arrray:n");<br>
+            for(i=0;i<n;i++)<br>
+            printf("%dn"a[i]);<br>
+            return 0;<br>
+        }<br>
+</p>

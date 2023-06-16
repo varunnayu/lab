@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <a href="p.html"><button></button></a><hr>
+    2. To perform Logical,shift,Rotate and Compare instructions of two integer numbers. <br>
+AREA Program,CODE, READONLY <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDR R1,[R0] <br>
+ LDR R0,=VALUE2 <br>
+ LDR R2,[R0] <br>
+ AND R3,R2,R1 <br>
+ OR R4,R2,R1 <br>
+ EOR R5,R2,R1 <br>
+LOOP LDR R6,R5,R5,LSL,#2 <br>
+ LDR R7,R5,R5,LSR,#2 <br>
+ LDR R8,R5,R5,ROR,#2 <br>
+ CMP R6,R7 <br>
+ BNE LOOP <br>
+VALUE1 DCD &BBBBBBBB <br>
+VALUE2 DCD &CCCCCCCC <br>
+ END<br>
+</p><hr>
+<p>
+6. To interface LED and realize Ring and Johnson counter. <br>
+Ring counter: <br>
+ #include<LPC21XX.h> <br>
+ unsigned int delay,i,k; <br>
+ int main(void) <br>
+{ <br>
+IO0DIR = 0x00FF0000; <br>
+while(1) <br>
+{ <br>
+k= 0x00010000; <br>
+for(i=0;i<8;i++) <br>
+{ <br>
+IO0SET=0x00FF0000; <br>
+for(delay=0;delay<50000;delay++); <br>
+IO0CLR = k; <br>
+for(delay=0;delay<50000;delay++); <br>
+k=k<<1; <br>
+} <br>
+} <br>
+</p>
+
+<p>
+    7.To realize BCD up/down counter using 7-segment display. <br>
+#include <LPC21xx.h> <br>
+signed int delay, count=0, Switchcount=0; <br>
+unsigned int Disp[10]={0x003F0000, 0x00060000, 0x005B0000, 0x004F0000, 0x00660000,0x006D0000,0x007D0000, 
+0x00070000, 0x007F0000, 0x006F0000 }; <br>
+#define ALLDISP 0x10000000 <br>
+int main (void) <br>
+{ <br>
+ PINSEL0 = 0x00000000; <br>
+ IO0DIR = 0xF0FF0000; <br>
+ IO0SET |= ALLDISP; <br>
+ while(1) <br>
+ { <br>
+ for(Switchcount=0;Switchcount<=9;Switchcount++) <br>
+ { <br>
+ IO0CLR = 0x00FF0000; <br>
+ for(delay=0;delay<100;delay++) <br>
+ IO0SET = Disp[Switchcount]; <br>
+ for(delay=0;delay<1000000;delay++) <br>
+ {} <br>
+ } <br>
+ for(Switchcount=9;Switchcount>=0;Switchcount--) <br>
+ { <br>
+ 
+ IO0CLR = 0x00FF0000; <br>
+ for(delay=0;delay<100;delay++) <br>
+ IO0SET = Disp[Switchcount]; <br>
+ for(delay=0;delay<1000000;delay++) <br>
+ {} 
+ } 
+ } 
+} <br>
+8.To genreate the waveforms using DAC. <br>
+ 1.Sinewave 2.Squarewave 3.Trianglewave <br>
+Sinewave: <br>
+int count=0,sinevalue,value; <br>
+unsigned char sine_tab[49]= <br>
+{0x80,0x90,0xA1,0xB1,0xC0,0xCD,0xDA,0xE5,0xEE,0xF6,0xFB,0xFE,0xFF,0xFE,0xFB,0xF6,0xEE,0xE5,0xDA,0xC
+D,0xC0,0xB1,0xA1,0x90,0x80,0x70,0x5F,0x4F,0x40,0x33,0x26,0x1B,0x12,0x0A,0x05,0x02,0x00,0x02,0x05,0x0A,0x
+12,0x1B,0x26,0x26,0x33,0x4F,0x5F,0x70,0x80}; <br>
+int main(void) <br>
+{ <br>
+PINSEL0=0x00000000; <br>
+IO0DIR = 0x00FF0000; <br>
+Ccount=0; <br>
+While(1) <br>
+{ <br>
+for(count=0;count<48;count++) <br>
+{ <br>
+ sinevalue=sine_tab[count]; <br>
+ value= 0x00FF0000&(sinevalue<<16); <br>
+ IO0PIN=value; <br>
+} <br>
+} 
+}
+</p>
+<br>
+</body>
+</html>

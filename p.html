@@ -1,0 +1,142 @@
+<p>Addition 32-bit : <br>
+ 
+    AREA ADDTIN,CODE <br>
+    ENTRY <br>
+    LDR R0,=VALUE1 <br>
+    LDR R1,[R0] <br>
+    LDR R0,=VALUE2 <br>
+    LDR R2,[R0] <br>
+    ADDS R3,R2,R1 <br>
+   VALUE1 DCD &BBBBBBBB <br>
+   VALUE2 DCD &CCCCCCCC <br>
+    END<br>
+</p>
+<p>
+    Subtraction 32-bit :<br> 
+AREA SUBTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDR R1,[R0] <br>
+ LDR R0,=VALUE2 <br>
+ LDR R2,[R0] <br>
+ SUBS R3,R2,R1 <br>
+VALUE1 DCD &BBBBBBBB <br>
+VALUE2 DCD &CCCCCCCC <br>
+ END <br>
+ 
+Subtraction 16-bit : <br>
+AREA SUBTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDRH R1,[R0] <br>
+ LDR R0,=VALUE2 <br>
+ LDRH R2,[R0] <br>
+ SUBS R3,R2,R1 <br>
+VALUE1 DCW &BBBB <br>
+VALUE2 DCW &CCCC <br>
+ END <br>
+Subtraction 8-bit : <br>
+AREA SUBTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDRB R1,[R0] <br>
+ LDR R0,=VALUE2 <br>
+ LDRB R2,[R0] <br>
+ SUBS R3,R2,R1 <br>
+VALUE1 DCB &BB <br>
+VALUE2 DCB &CC <br>
+ END <br>
+</p>
+<p>
+    Multiplication 32-bit : <br>
+ 
+ AREA MULTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDR R1,[R0] <br>
+ LDR R0,=VALUE2 <br>
+ LDR R2,[R0] <br>
+ UMULL R4,R3,R2,R1 <br>
+VALUE1 DCD &BBBBBBBB <br>
+VALUE2 DCD &CCCCCCCC <br>
+ END <br>
+Multiplication 16-bit : <br>
+ 
+ AREA MULTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDRH R1,[R0] <br>
+ LDR R0,=VALUE2 <br>
+ LDRH R2,[R0] <br>
+ UMUL R3,R2,R1 <br>
+VALUE1 DCW &BBBB <br>
+VALUE2 DCW &CCCC<br> 
+ END <br>
+Multiplication 8-bit : <br>
+ <br>
+ AREA MULTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDRB R1,[R0] <br>
+ LDR R0,=VALUE2 <br>
+ LDRB R2,[R0] <br>
+ UMUL R3,R2,R1 <br>
+VALUE1 DCB &BB <br>
+VALUE2 DCB &CC <br>
+ END <br>
+Addition 64-bit : <br>
+ AREA ADDTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDR R1,[R0] <br>
+ LDR R2,[R0,#4] <br>
+ LDR R0,=VALUE2 <br>
+ LDR R3,[R0] <br>
+ LDR R4,[R0,#4] <br>
+ ADDS R5,R3,R1 <br>
+ ADC R6,R4,R2 <br>
+ LDR R0,=RESULT <br>
+ STR R4,[R0] <br>
+ STR R7,[R0,#4] <br>
+VALUE1 DCD &12345678,&11111111 <br>
+VALUE2 DCD &AAAAAAAA,&BBBBBBBB <br>
+RESULT DCD 0 <br>
+ END<br>
+</p>
+<p>
+    Subtraction 64-bit : <br>
+ AREA SUBTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDR R1,[R0] <br>
+ LDR R2,[R0,#4] <br>
+ LDR R0,=VALUE2 <br>
+ LDR R3,[R0] <br>
+ LDR R4,[R0,#4] <br>
+ SUBS R5,R3,R1 <br>
+ SBC R6,R4,R2 <br>
+ LDR R0,=RESULT <br>
+ STR R4,[R0] <br>
+ STR R7,[R0,#4] <br>
+VALUE1 DCD &12345678,&11111111 <br>
+VALUE2 DCD &AAAAAAAA,&BBBBBBBB <br>
+RESULT DCD 0 <br>
+ END <br>
+Multiplication 64-bit : <br>
+ AREA MULTIN,CODE <br>
+ ENTRY <br>
+ LDR R0,=VALUE1 <br>
+ LDR R1,[R0] <br>
+ LDR R2,[R0,#4] <br>
+ LDR R0,=VALUE2 <br>
+ LDR R3,[R0] <br>
+ LDR R4,[R0,#4] <br>
+ UMULL R6,R5,R3,R1 <br>
+ UMLAL R8,R7,R4,R2 <br>
+ LDR R0,=RESULT <br>
+ STR R4,[R0] <br>
+ STR R9,[R0,#4] <br>
+VALUE1 DCD &12345678,&11111111 <br>
+VALUE2 DCD &AAAAAAAA,&BBBBBBBB <br>
+RESULT DCD 0 <br>
+ END <br>
